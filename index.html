@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>젊은공간 | 원룸텔 창업 원스탑 솔루션</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1B4332;
+  --primary-light: #2D6A4F;
+  --primary-lighter: #40916C;
+  --accent: #2D6A4F;
+  --accent-light: #52B788;
+  --accent-glow: #95D5B2;
+  --accent-bg: #E8F5EE;
+  --dark: #111;
+  --gray-900: #1a1a1a;
+  --gray-800: #333;
+  --gray-700: #444;
+  --gray-600: #555;
+  --gray-500: #777;
+  --gray-400: #999;
+  --gray-300: #bbb;
+  --gray-200: #e0e0e0;
+  --gray-100: #F3F4F6;
+  --white: #FFFFFF;
+  --bg: #FAFBFC;
+  --card-bg: #FFFFFF;
+  --naver: #03C75A;
+  --naver-dark: #02a34a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--gray-800);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+
+/* ===== NAV ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 14px 32px;
+  display: flex; justify-content: space-between; align-items: center;
+  transition: all 0.35s;
+  background: rgba(255,255,255,0);
+}
+.nav.scrolled {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+  padding: 10px 32px;
+}
+.nav-logo { font-size: 1.25rem; font-weight: 800; color: var(--gray-900); text-decoration: none; }
+.nav-logo .g { color: var(--accent-light); }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { text-decoration: none; color: var(--gray-600); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-phone {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: #fff; padding: 8px 18px;
+  border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.nav-phone:hover { background: var(--primary-light); }
+
+/* ===== HERO ===== */
+.hero {
+  position: relative; min-height: 100vh; min-height: 100svh;
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: linear-gradient(165deg, #f0faf4 0%, #e8f5ee 40%, #f5faf7 100%);
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(82,183,136,0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, rgba(45,106,79,0.07) 0%, transparent 50%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 700px; padding: 0 24px; }
+.hero-logo { width: 120px; height: auto; margin-bottom: 24px; display: inline-block; }
+@media (max-width: 768px) { .hero-logo { width: 90px; margin-bottom: 18px; } }
+.hero-badge {
+  display: inline-block; padding: 6px 20px; border-radius: 100px;
+  background: rgba(45,106,79,0.1); color: var(--accent);
+  font-size: 0.85rem; font-weight: 600; margin-bottom: 24px;
+  border: 1px solid rgba(45,106,79,0.15);
+}
+.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; color: var(--gray-900); line-height: 1.3; margin-bottom: 20px; }
+.hero h1 .hl { color: var(--accent); }
+.hero p { font-size: 1.05rem; color: var(--gray-600); margin-bottom: 36px; line-height: 1.8; }
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff; padding: 16px 36px;
+  border-radius: 12px; text-decoration: none; font-size: 1.05rem; font-weight: 700;
+  transition: all 0.3s; box-shadow: 0 4px 20px rgba(45,106,79,0.25);
+}
+.hero-cta:hover { background: var(--primary-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(45,106,79,0.3); }
+.hero-cta svg { width: 20px; height: 20px; }
+
+/* ===== SECTION COMMON ===== */
+.inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+section { padding: 100px 0; }
+.label {
+  display: inline-block; padding: 4px 14px; border-radius: 6px;
+  background: var(--accent-bg); color: var(--accent); font-size: 0.8rem; font-weight: 700;
+  margin-bottom: 12px; letter-spacing: 0.5px;
+}
+.stitle { font-size: clamp(1.6rem, 3.5vw, 2.2rem); font-weight: 800; color: var(--gray-900); margin-bottom: 12px; }
+.sdesc { font-size: 1rem; color: var(--gray-500); line-height: 1.7; }
+
+/* ===== WHY ===== */
+.why { background: var(--white); }
+.why-head { text-align: center; margin-bottom: 56px; }
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.why-card {
+  background: var(--bg); border-radius: 16px; padding: 36px 28px;
+  border: 1px solid var(--gray-100); transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.why-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.06); border-color: var(--accent-glow); }
+.why-num { font-size: 3rem; font-weight: 900; color: rgba(45,106,79,0.07); position: absolute; top: 16px; right: 20px; }
+.why-icon { font-size: 2.4rem; margin-bottom: 18px; }
+.why-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--gray-900); margin-bottom: 10px; }
+.why-card p { font-size: 0.9rem; color: var(--gray-600); line-height: 1.7; }
+
+/* ===== PROCESS ===== */
+.process { background: var(--bg); }
+.process-head { text-align: center; margin-bottom: 56px; }
+.steps { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 12px; }
+.step {
+  flex: 1; min-width: 180px; background: var(--white); border-radius: 16px;
+  padding: 28px 20px; text-align: center;
+  border: 1px solid var(--gray-100); transition: all 0.3s; position: relative;
+}
+.step:hover { border-color: var(--accent-glow); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
+.step-num {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--accent-bg); color: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.95rem; margin: 0 auto 14px;
+}
+.step h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+.step p { font-size: 0.8rem; color: var(--gray-500); }
+
+/* ===== REVENUE ===== */
+.revenue { background: var(--white); }
+.revenue-head { text-align: center; margin-bottom: 56px; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 48px; }
+.stat-card {
+  background: var(--bg); border-radius: 16px; padding: 32px 20px; text-align: center;
+  border: 1px solid var(--gray-100); transition: all 0.3s;
+}
+.stat-card:hover { border-color: var(--accent-glow); }
+.stat-card.accent-card { background: linear-gradient(135deg, var(--accent), var(--primary-light)); border: none; }
+.stat-card.accent-card .stat-label, .stat-card.accent-card .stat-val, .stat-card.accent-card .stat-sub { color: #fff; }
+.stat-label { font-size: 0.8rem; color: var(--gray-500); font-weight: 500; margin-bottom: 8px; }
+.stat-val { font-size: 2rem; font-weight: 900; color: var(--gray-900); }
+.stat-sub { font-size: 0.75rem; color: var(--gray-400); margin-top: 4px; }
+
+/* ===== FLOW ===== */
+.flow { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.flow-item {
+  background: var(--bg); border: 1px solid var(--gray-200); border-radius: 12px;
+  padding: 16px 24px; text-align: center; min-width: 120px;
+}
+.flow-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--gray-900); }
+.flow-item p { font-size: 0.75rem; color: var(--gray-500); }
+.flow-arrow { color: var(--accent-light); font-size: 1.4rem; font-weight: 700; }
+
+/* ===== BRANCHES ===== */
+.branches { background: var(--bg); }
+.branches-head { text-align: center; margin-bottom: 56px; }
+.branches-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+
+.branch-card {
+  position: relative; border-radius: 16px; overflow: hidden;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  transition: all 0.35s cubic-bezier(0.22,0.61,0.36,1);
+  text-decoration: none;
+  display: flex; flex-direction: column;
+  cursor: pointer;
+  height: 100%;
+}
+.branch-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px rgba(3,199,90,0.15);
+  border-color: var(--naver);
+}
+
+/* 네이버 로고 영역 */
+.branch-img {
+  width: 100%; aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #03C75A 0%, #02a34a 60%, #1B4332 100%);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.branch-img::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.15) 0%, transparent 60%);
+}
+.branch-img img {
+  width: 64px; height: 64px; border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  position: relative; z-index: 1;
+  transition: transform 0.3s;
+}
+.branch-img.photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border-radius: 0; box-shadow: none;
+  object-fit: cover;
+}
+.branch-img.photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.35) 100%);
+  z-index: 1;
+}
+.branch-img.photo .branch-badge { z-index: 2; }
+.branch-card:hover .branch-img img { transform: scale(1.08); }
+
+/* 호점 배지 */
+.branch-badge {
+  position: absolute; top: 12px; left: 12px; z-index: 2;
+  padding: 4px 12px; border-radius: 6px;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.3px;
+  color: #fff;
+  background: linear-gradient(135deg, var(--naver) 0%, var(--naver-dark) 100%);
+  box-shadow: 0 2px 8px rgba(3,199,90,0.3);
+}
+
+/* 텍스트 영역 */
+.branch-info {
+  padding: 18px 16px 20px;
+  display: flex; flex-direction: column;
+  flex: 1;
+}
+.branch-name {
+  font-size: 0.95rem; font-weight: 800; color: var(--gray-900);
+  margin-bottom: 6px; line-height: 1.4;
+}
+.branch-addr {
+  font-size: 0.78rem; color: var(--gray-500); font-weight: 400;
+  display: flex; align-items: center; gap: 4px;
+  margin-bottom: 12px;
+}
+.branch-addr svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* 네이버 플레이스 버튼 */
+.branch-naver {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: auto; padding: 8px 0;
+  background: var(--naver); color: #fff; border-radius: 8px;
+  font-size: 0.78rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.branch-card:hover .branch-naver { background: var(--naver-dark); }
+.branch-naver svg { width: 14px; height: 14px; }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: linear-gradient(135deg, var(--accent), var(--primary-light));
+  text-align: center; padding: 80px 24px;
+}
+.cta-section h2 { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 800; color: #fff; margin-bottom: 12px; }
+.cta-section p { font-size: 1rem; color: rgba(255,255,255,0.8); margin-bottom: 32px; }
+.cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 32px; border-radius: 12px;
+  text-decoration: none; font-size: 1rem; font-weight: 700;
+  transition: all 0.3s;
+}
+.cta-btn.pri { background: #fff; color: var(--accent); }
+.cta-btn.pri:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+.cta-btn.sec { background: rgba(255,255,255,0.15); color: #fff; border: 1px solid rgba(255,255,255,0.3); }
+.cta-btn.sec:hover { background: rgba(255,255,255,0.25); }
+
+/* ===== FOOTER ===== */
+.footer { background: var(--gray-900); color: var(--gray-400); text-align: center; padding: 40px 24px; font-size: 0.8rem; }
+.footer a { color: var(--accent-light); text-decoration: none; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .nav-links { display: none; }
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .branches-grid { grid-template-columns: repeat(3, 1fr); }
+  section { padding: 80px 0; }
+}
+@media (max-width: 768px) {
+  .nav { padding: 10px 16px; }
+  .nav.scrolled { padding: 8px 16px; }
+  .nav-phone { padding: 7px 14px; font-size: 0.8rem; }
+  .hero { min-height: auto; padding: 120px 0 80px; }
+  .hero-content { padding: 0 20px; }
+  .hero p { font-size: 0.95rem; line-height: 1.7; }
+  .hero-cta { padding: 14px 28px; font-size: 1rem; }
+  section { padding: 60px 0; }
+  .inner { padding: 0 20px; }
+  .why-head, .process-head, .revenue-head, .branches-head { margin-bottom: 36px; }
+  .why-grid { grid-template-columns: 1fr; gap: 16px; }
+  .why-card { padding: 28px 22px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 36px; }
+  .stat-card { padding: 24px 14px; }
+  .stat-val { font-size: 1.6rem; }
+  .branches-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .steps { flex-wrap: wrap; gap: 10px; }
+  .step { flex: 0 0 calc(50% - 5px); min-width: 0; padding: 22px 14px; }
+  .flow { flex-direction: column; gap: 10px; }
+  .flow-arrow { transform: rotate(90deg); }
+  .cta-section { padding: 60px 20px; }
+  .cta-btn { padding: 14px 24px; font-size: 0.95rem; width: 100%; justify-content: center; max-width: 320px; }
+  .cta-btns { flex-direction: column; align-items: center; gap: 12px; }
+}
+@media (max-width: 480px) {
+  .nav-logo { font-size: 1.1rem; }
+  .nav-phone { padding: 6px 12px; font-size: 0.75rem; }
+  .hero-badge { font-size: 0.75rem; padding: 5px 16px; margin-bottom: 18px; }
+  .hero p { font-size: 0.9rem; margin-bottom: 28px; }
+  .branches-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-val { font-size: 1.4rem; }
+  .stat-label { font-size: 0.72rem; }
+  .stat-sub { font-size: 0.68rem; }
+  .step { flex: 0 0 100%; }
+  .branch-info { padding: 14px 12px 16px; }
+  .branch-name { font-size: 0.9rem; }
+  .branch-addr { font-size: 0.72rem; }
+  .footer { padding: 32px 16px; font-size: 0.75rem; }
+}
+
+/* ===== ANIMATIONS ===== */
+.rv { opacity: 0; transform: translateY(32px); transition: all 0.7s cubic-bezier(0.22,0.61,0.36,1); }
+.rv.vis { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">젊은<span class="g">공간</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">왜 젊은공간인가</a></li>
+    <li><a href="#process">창업 프로세스</a></li>
+    <li><a href="#branches">운영 지점</a></li>
+    <li><a href="#revenue">수익 구조</a></li>
+  </ul>
+  <a href="tel:010-3280-6517" class="nav-phone">📞 상담 문의</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <img src="images/logo.png" alt="젊은공간" class="hero-logo">
+    <div class="hero-badge">30년 노하우 · 원룸텔 창업 솔루션</div>
+    <h1>창업 전부터 운영까지<br><span class="hl">젊은공간</span>이 함께합니다</h1>
+    <p>매물 확보부터 인테리어 시공, 입주 마케팅, 운영 지원까지<br>처음 창업, 함께하면 어렵지 않아요</p>
+    <a href="http://pf.kakao.com/_IxcadX" target="_blank" rel="noopener" class="hero-cta">
+      무료 상담 신청
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" id="why">
+  <div class="inner">
+    <div class="why-head rv">
+      <div class="label">Why 젊은공간</div>
+      <h2 class="stitle">왜 젊은공간이어야 할까요?</h2>
+      <p class="sdesc">수십 건의 창업 데이터를 기반으로 설계된 원스탑 솔루션.<br>젊은공간만의 3가지 핵심 경쟁력을 확인하세요.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card rv">
+        <div class="why-num">01</div>
+        <div class="why-icon">🏗️</div>
+        <h3>30년 노하우의 힘</h3>
+        <p>2015년부터 축적된 원룸텔 창업·운영 데이터. 상권별 최적 설계, 수익 극대화 전략, 리스크 관리까지 — 시행착오 없는 창업이 가능합니다.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-num">02</div>
+        <div class="why-icon">🔨</div>
+        <h3>직영 인테리어 시공 & AS</h3>
+        <p>외주가 아닌 직영 인테리어 업체가 직접 설계하고 시공합니다. 품질 관리부터 사후 AS까지 한 곳에서 책임지니, 중간 마진 없이 최고의 결과물을 만듭니다.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-num">03</div>
+        <div class="why-icon">📢</div>
+        <h3>직영 마케팅팀 운영</h3>
+        <p>네이버 플레이스 최적화, 블로그 SEO, SNS 바이럴까지 — 직영 마케팅팀이 오픈 전부터 풀가동. 입주율 걱정은 저희에게 맡기세요.</p>
+      </div>
+      <div class="why-card rv">
+        <div class="why-num">04</div>
+        <div class="why-icon">🎯</div>
+        <h3>운영 지원 & 전략 공유</h3>
+        <p>오픈이 끝이 아닙니다. CS 대응, 입주율 관리, 수익 극대화까지 — 저희가 쌓은 운영 전략을 아낌없이 전수해드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="inner">
+    <div class="process-head rv">
+      <div class="label">5-Step Process</div>
+      <h2 class="stitle">원룸텔 창업, 5단계로 끝</h2>
+      <p class="sdesc">매물 확보부터 안정적 운영까지, 전 과정을 함께합니다.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="step-num">1</div><h3>매물 확보</h3><p>입지 분석 및<br>최적 매물 선정</p></div>
+      <div class="step rv"><div class="step-num">2</div><h3>상권 분석</h3><p>수요·경쟁 분석<br>수익성 시뮬레이션</p></div>
+      <div class="step rv"><div class="step-num">3</div><h3>설계 및 시공</h3><p>직영 인테리어<br>최적 공간 설계</p></div>
+      <div class="step rv"><div class="step-num">4</div><h3>입주 마케팅</h3><p>네이버·SNS<br>사전 마케팅</p></div>
+      <div class="step rv"><div class="step-num">5</div><h3>운영 지원</h3><p>CS·정산·AS<br>지속 관리</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section class="revenue" id="revenue">
+  <div class="inner">
+    <div class="revenue-head rv">
+      <div class="label">Revenue</div>
+      <h2 class="stitle">수익 구조 한눈에 보기</h2>
+      <p class="sdesc">실제 운영 데이터 기반 평균 수익 시뮬레이션</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card rv"><div class="stat-label">평균 창업 비용</div><div class="stat-val">3.3억</div><div class="stat-sub">인테리어 + 보증금 포함</div></div>
+      <div class="stat-card rv"><div class="stat-label">연 매출</div><div class="stat-val">1.3억</div><div class="stat-sub">평균 입주율 92% 기준</div></div>
+      <div class="stat-card accent-card rv"><div class="stat-label">월 순수익</div><div class="stat-val">1,000만</div><div class="stat-sub">관리비·마케팅비 제외</div></div>
+      <div class="stat-card rv"><div class="stat-label">투자 회수 기간</div><div class="stat-val">3년</div><div class="stat-sub">상권·규모에 따라 변동</div></div>
+    </div>
+    <div class="flow rv">
+      <div class="flow-item"><h4>💰 투자</h4><p>3.3억</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><h4>🏠 오픈</h4><p>D-Day</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><h4>📈 안정화</h4><p>3~6개월</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><h4>💵 월수익</h4><p>1,000만+</p></div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-item"><h4>🎯 회수</h4><p>~3년</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BRANCHES -->
+<section class="branches" id="branches">
+  <div class="inner">
+    <div class="branches-head rv">
+      <div class="label">Branches</div>
+      <h2 class="stitle">전국 14개 지점 운영 중</h2>
+      <p class="sdesc">네이버 플레이스에서 각 지점의 실시간 정보를 확인하세요.</p>
+    </div>
+    <div class="branches-grid">
+
+      <!-- 1호점 -->
+      <a class="branch-card rv" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">1호점</div><img src="images/branch-01.png" alt="1호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 광명가산</div>
+          <div class="branch-addr">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            경기 광명시 · 광명사거리역 3분
+          </div>
+          <div class="branch-naver">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+            네이버 플레이스 보기
+          </div>
+        </div>
+      </a>
+
+      <!-- 2호점 -->
+      <a class="branch-card rv" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">2호점</div><img src="images/branch-02.png" alt="2호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 프리미엄 원룸텔<br>신촌 홍대점</div>
+          <div class="branch-addr">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            서울 서대문구 · 신촌역 4분
+          </div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 3호점 -->
+      <a class="branch-card rv" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">3호점</div><img src="images/branch-03.png" alt="3호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 양재강남점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 강남구 · 양재역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 4호점 -->
+      <a class="branch-card rv" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">4호점</div><img src="images/branch-04.png" alt="4호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 잠실송파점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 잠실역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 5호점 -->
+      <a class="branch-card rv" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">5호점</div><img src="images/branch-05.png" alt="5호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 사당점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 동작구 · 이수역 5분</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 6호점 -->
+      <a class="branch-card rv" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">6호점</div><img src="images/branch-06.png" alt="6호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 성신여대점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 성북구 · 성신여대역 2분</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 7호점 -->
+      <a class="branch-card rv" href="https://naver.me/G4dIoBq0" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">7호점</div><img src="images/branch-07.png" alt="7호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 레지던스 반포점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 서초구 · 반포역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 8호점 -->
+      <a class="branch-card rv" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">8호점</div><img src="images/branch-08.png" alt="8호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 노량진역점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 동작구 · 노량진역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 9호점 -->
+      <a class="branch-card rv" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">9호점</div><img src="images/branch-09.png" alt="9호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 프리미엄 원룸텔<br>송파가락</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 가락시장역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 10호점 -->
+      <a class="branch-card rv" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">10호점</div><img src="images/branch-10.png" alt="10호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 잠실석촌점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 석촌역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 11호점 -->
+      <a class="branch-card rv" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">11호점</div><img src="images/branch-11.png" alt="11호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 강동길동점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 강동구 · 길동역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 12호점 -->
+      <a class="branch-card rv" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">12호점</div><img src="images/branch-12.png" alt="12호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">강남 도곡 프리미엄 원룸텔<br>젊은공간 매봉역점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 강남구 · 매봉역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 13호점 -->
+      <a class="branch-card rv" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963?c=15.00,0,0,0,dh&placePath=/home?bk_query=방배역원룸텔&entry=bmp&from=map&fromPanelNum=2&locale=ko&svcName=map_pcv5&searchText=방배역원룸텔" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">13호점</div><img src="images/branch-13.png" alt="13호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 프리미엄 원룸텔<br>서초 방배역점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 서초구 · 방배역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 14호점 -->
+      <a class="branch-card rv" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974?c=15.00,0,0,0,dh&isCorrectAnswer=true&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&locale=ko&svcName=map_pcv5&searchText=신림봉천원룸텔" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">14호점</div><img src="images/branch-14.png" alt="14호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">신림 봉천 프리미엄 원룸텔<br>젊은공간 레지던스 서울대점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 관악구 · 서울대입구역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>지금 바로 무료 상담을 시작하세요</h2>
+  <p>30년 노하우의 젊은공간이 성공 창업을 함께합니다</p>
+  <div class="cta-btns">
+    <a href="tel:010-3280-6517" class="cta-btn pri">📞 전화 상담</a>
+    <a href="http://pf.kakao.com/_IxcadX" target="_blank" rel="noopener" class="cta-btn sec"><img src="images/kakao-logo.png" alt="" style="width:22px;height:22px;object-fit:contain;">카카오톡 문의</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2025 젊은공간. All rights reserved. | <a href="tel:010-3280-6517">010-3280-6517</a></p>
+</footer>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Scroll reveal
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
