@@ -41,6 +41,8 @@ body {
   color: var(--gray-800);
   overflow-x: hidden;
   line-height: 1.7;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 /* ===== NAV ===== */
@@ -303,6 +305,7 @@ section { padding: 100px 0; }
   .hero { min-height: auto; padding: 120px 0 80px; }
   .hero-content { padding: 0 20px; }
   .hero p { font-size: 0.95rem; line-height: 1.7; }
+  .hero p br, .sdesc br, .why-card p br, .step p br { display: none; }
   .hero-cta { padding: 14px 28px; font-size: 1rem; }
   section { padding: 60px 0; }
   .inner { padding: 0 20px; }
@@ -315,8 +318,11 @@ section { padding: 100px 0; }
   .branches-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .steps { flex-wrap: wrap; gap: 10px; }
   .step { flex: 0 0 calc(50% - 5px); min-width: 0; padding: 22px 14px; }
-  .flow { flex-direction: column; gap: 10px; }
-  .flow-arrow { transform: rotate(90deg); }
+  .flow { flex-direction: column; gap: 6px; }
+  .flow-item { width: 100%; max-width: 280px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .flow-item h4 { font-size: 0.95rem; margin: 0; }
+  .flow-item p { font-size: 0.85rem; color: var(--accent); font-weight: 700; margin: 0; }
+  .flow-arrow { transform: rotate(90deg); font-size: 1.1rem; margin: -2px 0; }
   .cta-section { padding: 60px 20px; }
   .cta-btn { padding: 14px 24px; font-size: 0.95rem; width: 100%; justify-content: center; max-width: 320px; }
   .cta-btns { flex-direction: column; align-items: center; gap: 12px; }
@@ -377,7 +383,7 @@ section { padding: 100px 0; }
     <div class="why-head rv">
       <div class="label">Why 젊은공간</div>
       <h2 class="stitle">왜 젊은공간이어야 할까요?</h2>
-      <p class="sdesc">수십 건의 창업 데이터를 기반으로 설계된 원스탑 솔루션.<br>젊은공간만의 3가지 핵심 경쟁력을 확인하세요.</p>
+      <p class="sdesc">수십 건의 창업 데이터를 기반으로 설계된 원스탑 솔루션.<br>젊은공간만의 4가지 핵심 경쟁력을 확인하세요.</p>
     </div>
     <div class="why-grid">
       <div class="why-card rv">
