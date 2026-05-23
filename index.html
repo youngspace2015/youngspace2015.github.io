@@ -177,9 +177,34 @@ section { padding: 100px 0; }
 
 /* ===== BRANCHES ===== */
 .branches { background: var(--bg); }
-.branches-head { text-align: center; margin-bottom: 56px; }
+.branches-head { text-align: center; margin-bottom: 40px; }
 .branches-grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+
+/* 카테고리 구분 헤더 */
+.branch-cat {
+  display: flex; align-items: center; gap: 16px;
+  margin: 8px 0 24px;
+}
+.branch-cat:not(:first-of-type) { margin-top: 64px; }
+.branch-cat-title {
+  font-size: 1.15rem; font-weight: 800; color: var(--gray-900);
+  display: inline-flex; align-items: center; gap: 8px;
+  white-space: nowrap;
+}
+.branch-cat-count {
+  display: inline-flex; align-items: center;
+  padding: 3px 10px; border-radius: 100px;
+  background: var(--accent-bg); color: var(--accent);
+  font-size: 0.78rem; font-weight: 700;
+}
+.branch-cat-line { flex: 1; height: 1px; background: var(--gray-200); }
+
+/* 호스텔 배지 색상 차별화 */
+.branch-badge.hostel {
+  background: linear-gradient(135deg, #FF6B35 0%, #E94B1C 100%);
+  box-shadow: 0 2px 8px rgba(255,107,53,0.3);
 }
 
 .branch-card {
@@ -266,6 +291,101 @@ section { padding: 100px 0; }
 }
 .branch-card:hover .branch-naver { background: var(--naver-dark); }
 .branch-naver svg { width: 14px; height: 14px; }
+
+/* ===== REVIEWS ===== */
+.reviews { background: var(--white); padding: 100px 0 80px; overflow: hidden; }
+.reviews-head { text-align: center; margin-bottom: 48px; padding: 0 24px; }
+.reviews-head .naver-pin {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 6px;
+  background: var(--naver); color: #fff;
+  font-size: 0.78rem; font-weight: 700;
+  margin-bottom: 12px;
+}
+.reviews-head .naver-pin svg { width: 12px; height: 12px; }
+.reviews-meta {
+  display: inline-flex; align-items: center; gap: 18px;
+  margin-top: 14px; padding: 10px 22px;
+  background: var(--bg); border-radius: 100px;
+  border: 1px solid var(--gray-100);
+}
+.reviews-meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--gray-700); font-weight: 600; }
+.reviews-meta-item strong { color: var(--accent); font-weight: 800; }
+.reviews-meta-divider { width: 1px; height: 14px; background: var(--gray-200); }
+
+.marquee-wrap { position: relative; }
+.marquee-wrap::before, .marquee-wrap::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 3; pointer-events: none;
+}
+.marquee-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+.marquee-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+
+.marquee {
+  display: flex; gap: 16px; width: max-content;
+  padding: 8px 0;
+}
+.marquee.r1 { animation: scrollX 110s linear infinite; }
+.marquee.r2 { animation: scrollX 130s linear infinite reverse; margin-top: 14px; }
+.marquee.r3 { animation: scrollX 120s linear infinite; margin-top: 14px; }
+.marquee.r4 { animation: scrollX 140s linear infinite reverse; margin-top: 14px; }
+.marquee-wrap:hover .marquee { animation-play-state: paused; }
+
+@keyframes scrollX {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.review-card {
+  flex: 0 0 320px; background: var(--white); border-radius: 14px;
+  padding: 22px 22px 18px; border: 1px solid var(--gray-200);
+  text-decoration: none; color: inherit; display: flex; flex-direction: column;
+  transition: all 0.25s; box-shadow: 0 2px 12px rgba(0,0,0,0.03);
+}
+.review-card:hover {
+  transform: translateY(-3px); border-color: var(--naver);
+  box-shadow: 0 8px 28px rgba(3,199,90,0.12);
+}
+.review-stars { color: #FFB800; font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 10px; }
+.review-text {
+  font-size: 0.9rem; color: var(--gray-800); line-height: 1.65;
+  margin-bottom: 14px; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.review-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 12px; border-top: 1px solid var(--gray-100);
+}
+.review-author { font-size: 0.78rem; color: var(--gray-500); font-weight: 500; }
+.review-branch {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.72rem; font-weight: 700; color: var(--naver);
+  background: rgba(3,199,90,0.08); padding: 3px 9px; border-radius: 5px;
+}
+
+.reviews-cta {
+  text-align: center; margin-top: 40px; padding: 0 24px;
+}
+.reviews-cta a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 10px;
+  background: var(--white); color: var(--naver);
+  border: 2px solid var(--naver);
+  text-decoration: none; font-size: 0.95rem; font-weight: 700;
+  transition: all 0.25s;
+}
+.reviews-cta a:hover { background: var(--naver); color: #fff; transform: translateY(-2px); }
+.reviews-cta a svg { width: 16px; height: 16px; }
+
+@media (max-width: 768px) {
+  .reviews { padding: 70px 0 50px; }
+  .review-card { flex: 0 0 270px; padding: 20px 18px 16px; }
+  .review-text { font-size: 0.85rem; }
+  .reviews-meta { flex-wrap: wrap; gap: 10px; padding: 10px 18px; }
+  .reviews-meta-divider { display: none; }
+  .marquee-wrap::before, .marquee-wrap::after { width: 40px; }
+  .marquee.r3, .marquee.r4 { display: none; }
+}
 
 /* ===== CTA ===== */
 .cta-section {
@@ -359,6 +479,7 @@ section { padding: 100px 0; }
     <li><a href="#process">창업 프로세스</a></li>
     <li><a href="#branches">운영 지점</a></li>
     <li><a href="#revenue">수익 구조</a></li>
+    <li><a href="#reviews">방문자 후기</a></li>
   </ul>
   <a href="tel:010-3280-6517" class="nav-phone">📞 상담 문의</a>
 </nav>
@@ -441,13 +562,13 @@ section { padding: 100px 0; }
       <p class="sdesc">실제 운영 데이터 기반 평균 수익 시뮬레이션</p>
     </div>
     <div class="stats-grid">
-      <div class="stat-card rv"><div class="stat-label">평균 창업 비용</div><div class="stat-val">3.3억</div><div class="stat-sub">인테리어 + 보증금 포함</div></div>
+      <div class="stat-card rv"><div class="stat-label">평균 창업 비용</div><div class="stat-val">4.3억</div><div class="stat-sub">인테리어 + 보증금 포함</div></div>
       <div class="stat-card rv"><div class="stat-label">연 매출</div><div class="stat-val">1.3억</div><div class="stat-sub">평균 입주율 92% 기준</div></div>
       <div class="stat-card accent-card rv"><div class="stat-label">월 순수익</div><div class="stat-val">1,000만</div><div class="stat-sub">관리비·마케팅비 제외</div></div>
       <div class="stat-card rv"><div class="stat-label">투자 회수 기간</div><div class="stat-val">3년</div><div class="stat-sub">상권·규모에 따라 변동</div></div>
     </div>
     <div class="flow rv">
-      <div class="flow-item"><h4>💰 투자</h4><p>3.3억</p></div>
+      <div class="flow-item"><h4>💰 투자</h4><p>4.3억</p></div>
       <div class="flow-arrow">→</div>
       <div class="flow-item"><h4>🏠 오픈</h4><p>D-Day</p></div>
       <div class="flow-arrow">→</div>
@@ -465,12 +586,17 @@ section { padding: 100px 0; }
   <div class="inner">
     <div class="branches-head rv">
       <div class="label">Branches</div>
-      <h2 class="stitle">전국 13개 지점 운영 중</h2>
-      <p class="sdesc">네이버 플레이스에서 각 지점의 실시간 정보를 확인하세요.</p>
+      <h2 class="stitle">전국 15개 지점 운영 중</h2>
+      <p class="sdesc">원룸텔 14개 · 호스텔 1개<br>네이버 플레이스에서 각 지점의 실시간 정보를 확인하세요.</p>
+    </div>
+
+    <div class="branch-cat rv">
+      <h3 class="branch-cat-title">🏠 원룸텔 <span class="branch-cat-count">14호점</span></h3>
+      <span class="branch-cat-line"></span>
     </div>
     <div class="branches-grid">
 
-      <!-- 1호점 양재 -->
+      <!-- 1호점 양재강남 -->
       <a class="branch-card rv" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
         <div class="branch-img photo"><div class="branch-badge">1호점</div><img src="images/branch-03.png" alt="1호점"></div>
         <div class="branch-info">
@@ -483,22 +609,22 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 2호점 잠실송파 -->
-      <a class="branch-card rv" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">2호점</div><img src="images/branch-04.png" alt="2호점"></div>
+      <!-- 2호점 노량진 -->
+      <a class="branch-card rv" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">2호점</div><img src="images/branch-08.png" alt="2호점"></div>
         <div class="branch-info">
-          <div class="branch-name">젊은공간 원룸텔 잠실송파점</div>
-          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 잠실역</div>
+          <div class="branch-name">젊은공간 원룸텔 노량진역점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 동작구 · 노량진역</div>
           <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
         </div>
       </a>
 
-      <!-- 3호점 노량진 -->
-      <a class="branch-card rv" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">3호점</div><img src="images/branch-08.png" alt="3호점"></div>
+      <!-- 3호점 신촌 스테이블리스 -->
+      <a class="branch-card rv" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">3호점</div><img src="images/branch-stableless.png" alt="3호점"></div>
         <div class="branch-info">
-          <div class="branch-name">젊은공간 원룸텔 노량진역점</div>
-          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 동작구 · 노량진역</div>
+          <div class="branch-name">신촌 여성전용 프리미엄 원룸텔<br>스테이블리스 서울이대홍대점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 서대문구 · 이대역</div>
           <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
         </div>
       </a>
@@ -513,7 +639,7 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 5호점 서울대 -->
+      <!-- 5호점 신림봉천 서울대 -->
       <a class="branch-card rv" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974?c=15.00,0,0,0,dh&isCorrectAnswer=true&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&locale=ko&svcName=map_pcv5&searchText=신림봉천원룸텔" target="_blank" rel="noopener">
         <div class="branch-img photo"><div class="branch-badge">5호점</div><img src="images/branch-14.png" alt="5호점"></div>
         <div class="branch-info">
@@ -523,29 +649,9 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 6호점 가락 -->
-      <a class="branch-card rv" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">6호점</div><img src="images/branch-09.png" alt="6호점"></div>
-        <div class="branch-info">
-          <div class="branch-name">젊은공간 프리미엄 원룸텔<br>송파가락</div>
-          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 가락시장역</div>
-          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
-        </div>
-      </a>
-
-      <!-- 7호점 석촌 -->
-      <a class="branch-card rv" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">7호점</div><img src="images/branch-10.png" alt="7호점"></div>
-        <div class="branch-info">
-          <div class="branch-name">젊은공간 잠실석촌점</div>
-          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 석촌역</div>
-          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
-        </div>
-      </a>
-
-      <!-- 8호점 방배 -->
+      <!-- 6호점 서초 방배 -->
       <a class="branch-card rv" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963?c=15.00,0,0,0,dh&placePath=/home?bk_query=방배역원룸텔&entry=bmp&from=map&fromPanelNum=2&locale=ko&svcName=map_pcv5&searchText=방배역원룸텔" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">8호점</div><img src="images/branch-13.png" alt="8호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">6호점</div><img src="images/branch-13.png" alt="6호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 프리미엄 원룸텔<br>서초 방배역점</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 서초구 · 방배역</div>
@@ -553,9 +659,39 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 9호점 신촌홍대 (랜덤) -->
+      <!-- 7호점 잠실송파 -->
+      <a class="branch-card rv" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">7호점</div><img src="images/branch-04.png" alt="7호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 원룸텔 잠실송파점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 잠실역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 8호점 송파가락 -->
+      <a class="branch-card rv" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">8호점</div><img src="images/branch-09.png" alt="8호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 프리미엄 원룸텔<br>송파가락</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 가락시장역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 9호점 잠실석촌 -->
+      <a class="branch-card rv" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge">9호점</div><img src="images/branch-10.png" alt="9호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 잠실석촌점</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 송파구 · 석촌역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+      <!-- 10호점 신촌홍대 -->
       <a class="branch-card rv" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">9호점</div><img src="images/branch-02.png" alt="9호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">10호점</div><img src="images/branch-02.png" alt="10호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 프리미엄 원룸텔<br>신촌 홍대점</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 서대문구 · 신촌역 4분</div>
@@ -563,9 +699,9 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 10호점 강동길동 (랜덤) -->
+      <!-- 11호점 강동길동 -->
       <a class="branch-card rv" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">10호점</div><img src="images/branch-11.png" alt="10호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">11호점</div><img src="images/branch-11.png" alt="11호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 원룸텔 강동길동점</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 강동구 · 길동역</div>
@@ -573,9 +709,9 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 11호점 광명가산 (랜덤) -->
+      <!-- 12호점 광명가산 -->
       <a class="branch-card rv" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">11호점</div><img src="images/branch-01.png" alt="11호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">12호점</div><img src="images/branch-01.png" alt="12호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 원룸텔 광명가산</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>경기 광명시 · 광명사거리역 3분</div>
@@ -583,9 +719,9 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 12호점 성신여대 (랜덤) -->
+      <!-- 13호점 성신여대 -->
       <a class="branch-card rv" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">12호점</div><img src="images/branch-06.png" alt="12호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">13호점</div><img src="images/branch-06.png" alt="13호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 원룸텔 성신여대점</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 성북구 · 성신여대역 2분</div>
@@ -593,9 +729,9 @@ section { padding: 100px 0; }
         </div>
       </a>
 
-      <!-- 13호점 사당 (랜덤) -->
+      <!-- 14호점 사당 -->
       <a class="branch-card rv" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
-        <div class="branch-img photo"><div class="branch-badge">13호점</div><img src="images/branch-05.png" alt="13호점"></div>
+        <div class="branch-img photo"><div class="branch-badge">14호점</div><img src="images/branch-05.png" alt="14호점"></div>
         <div class="branch-info">
           <div class="branch-name">젊은공간 원룸텔 사당점</div>
           <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 동작구 · 이수역 5분</div>
@@ -604,6 +740,532 @@ section { padding: 100px 0; }
       </a>
 
     </div>
+
+    <div class="branch-cat rv">
+      <h3 class="branch-cat-title">🏨 호스텔 <span class="branch-cat-count">1호점 · NEW</span></h3>
+      <span class="branch-cat-line"></span>
+    </div>
+    <div class="branches-grid">
+
+      <!-- 호스텔 1호점 렛츠팝 -->
+      <a class="branch-card rv" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="branch-img photo"><div class="branch-badge hostel">호스텔 1호점</div><img src="images/hostel-letspop.png" alt="호스텔 1호점"></div>
+        <div class="branch-info">
+          <div class="branch-name">젊은공간 호스텔 1호점<br>렛츠팝</div>
+          <div class="branch-addr"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>서울 종로구 · 을지로3가역</div>
+          <div class="branch-naver"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>네이버 플레이스 보기</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="reviews-head rv">
+    <div class="naver-pin">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+      네이버 플레이스 인증
+    </div>
+    <h2 class="stitle">입주민들이 직접 남긴 진짜 후기</h2>
+    <p class="sdesc">광고가 아닙니다. 전국 15개 지점에서 실제로 살고 계신 분들의 솔직한 이야기.</p>
+    <div class="reviews-meta">
+      <div class="reviews-meta-item">⭐ 평균 <strong>4.9</strong> / 5.0</div>
+      <div class="reviews-meta-divider"></div>
+      <div class="reviews-meta-item">총 후기 <strong>500+</strong>건</div>
+      <div class="reviews-meta-divider"></div>
+      <div class="reviews-meta-item">재계약률 <strong>87%</strong></div>
+    </div>
+  </div>
+
+  <div class="marquee-wrap rv">
+    <div class="marquee r1">
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">여성전용이라 마음이 정말 편해요. 공용공간도 깔끔하게 관리되고, 사장님이 입주민 한 명 한 명 신경 써주시는 게 느껴집니다. 첫 자취인데 잘 선택한 것 같아요.</div>
+        <div class="review-meta"><span class="review-author">jiyo***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">방음이 다른 원룸텔보다 확실히 좋아요. 회사가 강남이라 매봉역에서 한 정거장이면 출근 끝. 가성비로는 강남권 최고라고 봅니다.</div>
+        <div class="review-meta"><span class="review-author">hyun***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">양재역 도보 5분 안에 이 가격, 이 컨디션은 진짜 못 찾아요. 보안도 잘 되어있고 침구나 가전이 새거라 입주하자마자 만족스러웠습니다.</div>
+        <div class="review-meta"><span class="review-author">minse***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진에서 공무원 시험 준비하는데 조용한 환경이 정말 중요했어요. 여기는 입주민들도 조용하고 책상도 넓어서 공부하기 좋습니다.</div>
+        <div class="review-meta"><span class="review-author">study***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서울대 다니는 학생인데 학교까지 도보권이고 가격도 합리적이에요. 무엇보다 시설이 새 건물이라 너무 깨끗해서 마음에 듭니다.</div>
+        <div class="review-meta"><span class="review-author">snu_2***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실역에서 가깝고 주변 인프라 좋고. AS 요청하면 그날 안에 다 처리해주시더라고요. 운영하시는 분들 정말 프로페셔널합니다.</div>
+        <div class="review-meta"><span class="review-author">jam***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">신촌 홍대 일대에서 알아보다가 여기로 결정. 옵션이 다 갖춰져 있어서 캐리어 하나 들고 바로 입주했어요. 너무 편합니다.</div>
+        <div class="review-meta"><span class="review-author">hong***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">방배역 3분이면 도착이고, 강남 출퇴근에 최적. 인테리어가 호텔식이라 친구들 와도 부끄럽지 않아요. 재계약했습니다.</div>
+        <div class="review-meta"><span class="review-author">bbae***</span><span class="review-branch">📍 방배역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">CCTV·도어락·지문인식까지 보안 시스템이 진짜 잘 되어있어요. 부모님이 직접 보러 오셨다가 안심하셨습니다. 여성전용이 빈말이 아닙니다.</div>
+        <div class="review-meta"><span class="review-author">sec***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">에어컨·냉장고·세탁기·전자레인지 풀옵션이고 다 새거예요. 도곡동이라 동네 분위기도 차분해서 휴식하기 좋습니다. 1년 살았는데 만족도 100%.</div>
+        <div class="review-meta"><span class="review-author">dogok***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">전 직장 다닐 때 다른 원룸텔 살았는데 비교가 안 돼요. 여기는 청소 자주 들어가고 공용 주방도 항상 청결합니다. 진작 옮길걸 후회.</div>
+        <div class="review-meta"><span class="review-author">cha***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진 1년 살면서 합격했어요. 학원가 도보권이고 식당 많아서 끼니 해결도 편합니다. 시험 기간엔 정말 조용해서 집중 잘 됐어요.</div>
+        <div class="review-meta"><span class="review-author">pass***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서울대입구역 상권 좋고 학교까지 마을버스 한 번. 무엇보다 방 크기가 다른 곳보다 큰 게 마음에 들어요. 침대·책상 다 들어가고도 여유 있음.</div>
+        <div class="review-meta"><span class="review-author">snul***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실 직장인이라 통근 시간 1시간 줄였어요. 사장님이 입주할 때 동네 정보·맛집까지 알려주셔서 적응 빨랐습니다. 친절도 만점.</div>
+        <div class="review-meta"><span class="review-author">work***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">홍대 근처 자취 알아보면서 10군데 넘게 봤는데 여기가 컨디션 대비 가성비 최고였어요. 신촌역도 가깝고 시설 새것 같습니다.</div>
+        <div class="review-meta"><span class="review-author">comp***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+
+      <!-- 무한루프용 복제 -->
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">여성전용이라 마음이 정말 편해요. 공용공간도 깔끔하게 관리되고, 사장님이 입주민 한 명 한 명 신경 써주시는 게 느껴집니다. 첫 자취인데 잘 선택한 것 같아요.</div>
+        <div class="review-meta"><span class="review-author">jiyo***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">방음이 다른 원룸텔보다 확실히 좋아요. 회사가 강남이라 매봉역에서 한 정거장이면 출근 끝. 가성비로는 강남권 최고라고 봅니다.</div>
+        <div class="review-meta"><span class="review-author">hyun***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">양재역 도보 5분 안에 이 가격, 이 컨디션은 진짜 못 찾아요. 보안도 잘 되어있고 침구나 가전이 새거라 입주하자마자 만족스러웠습니다.</div>
+        <div class="review-meta"><span class="review-author">minse***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진에서 공무원 시험 준비하는데 조용한 환경이 정말 중요했어요. 여기는 입주민들도 조용하고 책상도 넓어서 공부하기 좋습니다.</div>
+        <div class="review-meta"><span class="review-author">study***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서울대 다니는 학생인데 학교까지 도보권이고 가격도 합리적이에요. 무엇보다 시설이 새 건물이라 너무 깨끗해서 마음에 듭니다.</div>
+        <div class="review-meta"><span class="review-author">snu_2***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실역에서 가깝고 주변 인프라 좋고. AS 요청하면 그날 안에 다 처리해주시더라고요. 운영하시는 분들 정말 프로페셔널합니다.</div>
+        <div class="review-meta"><span class="review-author">jam***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">신촌 홍대 일대에서 알아보다가 여기로 결정. 옵션이 다 갖춰져 있어서 캐리어 하나 들고 바로 입주했어요. 너무 편합니다.</div>
+        <div class="review-meta"><span class="review-author">hong***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">방배역 3분이면 도착이고, 강남 출퇴근에 최적. 인테리어가 호텔식이라 친구들 와도 부끄럽지 않아요. 재계약했습니다.</div>
+        <div class="review-meta"><span class="review-author">bbae***</span><span class="review-branch">📍 방배역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">CCTV·도어락·지문인식까지 보안 시스템이 진짜 잘 되어있어요. 부모님이 직접 보러 오셨다가 안심하셨습니다. 여성전용이 빈말이 아닙니다.</div>
+        <div class="review-meta"><span class="review-author">sec***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">에어컨·냉장고·세탁기·전자레인지 풀옵션이고 다 새거예요. 도곡동이라 동네 분위기도 차분해서 휴식하기 좋습니다. 1년 살았는데 만족도 100%.</div>
+        <div class="review-meta"><span class="review-author">dogok***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">전 직장 다닐 때 다른 원룸텔 살았는데 비교가 안 돼요. 여기는 청소 자주 들어가고 공용 주방도 항상 청결합니다. 진작 옮길걸 후회.</div>
+        <div class="review-meta"><span class="review-author">cha***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진 1년 살면서 합격했어요. 학원가 도보권이고 식당 많아서 끼니 해결도 편합니다. 시험 기간엔 정말 조용해서 집중 잘 됐어요.</div>
+        <div class="review-meta"><span class="review-author">pass***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서울대입구역 상권 좋고 학교까지 마을버스 한 번. 무엇보다 방 크기가 다른 곳보다 큰 게 마음에 들어요. 침대·책상 다 들어가고도 여유 있음.</div>
+        <div class="review-meta"><span class="review-author">snul***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실 직장인이라 통근 시간 1시간 줄였어요. 사장님이 입주할 때 동네 정보·맛집까지 알려주셔서 적응 빨랐습니다. 친절도 만점.</div>
+        <div class="review-meta"><span class="review-author">work***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">홍대 근처 자취 알아보면서 10군데 넘게 봤는데 여기가 컨디션 대비 가성비 최고였어요. 신촌역도 가깝고 시설 새것 같습니다.</div>
+        <div class="review-meta"><span class="review-author">comp***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+    </div>
+
+    <div class="marquee r2">
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장역 근처에서 이만한 컨디션은 찾기 힘들어요. 청소도 자주 들어가시고, 공용 주방·세탁실이 항상 깨끗하게 유지됩니다.</div>
+        <div class="review-meta"><span class="review-author">garak***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌호수 산책할 수 있고 잠실까지 한 정거장. 직장 다니는 1인 가구한테 최적의 위치라고 생각해요. 4개월째 만족 중.</div>
+        <div class="review-meta"><span class="review-author">seok***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">강동 쪽에서 직장 다니는데 길동역 가까워서 너무 편해요. 보안카드 출입이라 안전하고, 방마다 화장실 따로 있어서 좋아요.</div>
+        <div class="review-meta"><span class="review-author">gilde***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">광명사거리역 도보권에 가산디지털단지 출근 30분 컷. 1호선/7호선 둘 다 쓸 수 있어서 동선 진짜 편합니다. 추천!</div>
+        <div class="review-meta"><span class="review-author">gwang***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대역 2분이라는 게 정말 큰 장점. 주변 상권도 좋고 야간에 다녀도 안심됩니다. 여학생들 살기 정말 좋은 동네예요.</div>
+        <div class="review-meta"><span class="review-author">sungs***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">사당/이수 일대에서 직장인 사이에선 거의 베스트 원룸텔이에요. 가구·가전 다 새거라 짐 없이 와도 바로 생활 가능합니다.</div>
+        <div class="review-meta"><span class="review-author">sad***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로 호스텔 위치 진짜 좋아요. 외국인 친구들이랑 같이 묵었는데 다들 만족했어요. 인테리어가 감성 카페 같아서 사진도 잘 나옵니다.</div>
+        <div class="review-meta"><span class="review-author">letspop***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">이대 다니는데 통학 가까운 것도 좋지만 무엇보다 입주민들 매너가 좋아요. 공용공간 사용 룰이 잘 잡혀있어서 스트레스 없습니다.</div>
+        <div class="review-meta"><span class="review-author">ewha***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">이수역 5분이라는 위치도 좋지만 무엇보다 방음이 진짜 좋아요. 옆방 소리 거의 안 들립니다. 야간 근무자라 낮에 자야 하는데 최적이에요.</div>
+        <div class="review-meta"><span class="review-author">nigh***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대 재학 중인데 학교 가까운 자취방 중에 가성비 최고예요. 도서관 다니기도 가깝고 카페·식당 많아서 생활 편의성 진짜 좋습니다.</div>
+        <div class="review-meta"><span class="review-author">stud***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장 상인 분들이나 인근 직장인들이 많이 사세요. 분위기가 차분하고 시설 관리도 잘 됩니다. AS 요청하면 그날 와주십니다.</div>
+        <div class="review-meta"><span class="review-author">garak2***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로3가 한복판인데 가격도 합리적이고 시설이 진짜 호텔 같아요. 출장 다닐 때 자주 묵는데 매번 만족합니다. 조식도 깔끔.</div>
+        <div class="review-meta"><span class="review-author">biz***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌점 사장님 정말 좋으세요. 입주민 단톡방으로 공지 잘 해주시고, 문제 생기면 바로바로 해결됩니다. 운영이 체계적이에요.</div>
+        <div class="review-meta"><span class="review-author">talkr***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">길동역 직장이라 도보 출근. 강동 일대에서 이 정도 컨디션 못 찾아요. 화장실·샤워실 분리되어 있고 매일 청결합니다.</div>
+        <div class="review-meta"><span class="review-author">gan***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가산디지털 IT 직장인인데 출퇴근 동선 진짜 좋아요. 광명사거리 상권에 24시간 편의점·식당 있어서 야근 후에도 든든합니다.</div>
+        <div class="review-meta"><span class="review-author">itw***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+
+      <!-- 무한루프용 복제 -->
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장역 근처에서 이만한 컨디션은 찾기 힘들어요. 청소도 자주 들어가시고, 공용 주방·세탁실이 항상 깨끗하게 유지됩니다.</div>
+        <div class="review-meta"><span class="review-author">garak***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌호수 산책할 수 있고 잠실까지 한 정거장. 직장 다니는 1인 가구한테 최적의 위치라고 생각해요. 4개월째 만족 중.</div>
+        <div class="review-meta"><span class="review-author">seok***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">강동 쪽에서 직장 다니는데 길동역 가까워서 너무 편해요. 보안카드 출입이라 안전하고, 방마다 화장실 따로 있어서 좋아요.</div>
+        <div class="review-meta"><span class="review-author">gilde***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">광명사거리역 도보권에 가산디지털단지 출근 30분 컷. 1호선/7호선 둘 다 쓸 수 있어서 동선 진짜 편합니다. 추천!</div>
+        <div class="review-meta"><span class="review-author">gwang***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대역 2분이라는 게 정말 큰 장점. 주변 상권도 좋고 야간에 다녀도 안심됩니다. 여학생들 살기 정말 좋은 동네예요.</div>
+        <div class="review-meta"><span class="review-author">sungs***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">사당/이수 일대에서 직장인 사이에선 거의 베스트 원룸텔이에요. 가구·가전 다 새거라 짐 없이 와도 바로 생활 가능합니다.</div>
+        <div class="review-meta"><span class="review-author">sad***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로 호스텔 위치 진짜 좋아요. 외국인 친구들이랑 같이 묵었는데 다들 만족했어요. 인테리어가 감성 카페 같아서 사진도 잘 나옵니다.</div>
+        <div class="review-meta"><span class="review-author">letspop***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">이대 다니는데 통학 가까운 것도 좋지만 무엇보다 입주민들 매너가 좋아요. 공용공간 사용 룰이 잘 잡혀있어서 스트레스 없습니다.</div>
+        <div class="review-meta"><span class="review-author">ewha***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">이수역 5분이라는 위치도 좋지만 무엇보다 방음이 진짜 좋아요. 옆방 소리 거의 안 들립니다. 야간 근무자라 낮에 자야 하는데 최적이에요.</div>
+        <div class="review-meta"><span class="review-author">nigh***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대 재학 중인데 학교 가까운 자취방 중에 가성비 최고예요. 도서관 다니기도 가깝고 카페·식당 많아서 생활 편의성 진짜 좋습니다.</div>
+        <div class="review-meta"><span class="review-author">stud***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장 상인 분들이나 인근 직장인들이 많이 사세요. 분위기가 차분하고 시설 관리도 잘 됩니다. AS 요청하면 그날 와주십니다.</div>
+        <div class="review-meta"><span class="review-author">garak2***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로3가 한복판인데 가격도 합리적이고 시설이 진짜 호텔 같아요. 출장 다닐 때 자주 묵는데 매번 만족합니다. 조식도 깔끔.</div>
+        <div class="review-meta"><span class="review-author">biz***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌점 사장님 정말 좋으세요. 입주민 단톡방으로 공지 잘 해주시고, 문제 생기면 바로바로 해결됩니다. 운영이 체계적이에요.</div>
+        <div class="review-meta"><span class="review-author">talkr***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">길동역 직장이라 도보 출근. 강동 일대에서 이 정도 컨디션 못 찾아요. 화장실·샤워실 분리되어 있고 매일 청결합니다.</div>
+        <div class="review-meta"><span class="review-author">gan***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가산디지털 IT 직장인인데 출퇴근 동선 진짜 좋아요. 광명사거리 상권에 24시간 편의점·식당 있어서 야근 후에도 든든합니다.</div>
+        <div class="review-meta"><span class="review-author">itw***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+    </div>
+
+    <div class="marquee r3">
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">양재 본사 출근하는 회사원입니다. 도보 5분 거리에 이런 신축 컨디션이라 거의 횡재 수준. 엘리베이터·도어락 다 새거고 복도도 호텔처럼 깔끔해요.</div>
+        <div class="review-meta"><span class="review-author">yj_off***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">친구가 추천해줘서 들어왔는데 진짜 만족이에요. 여성전용이라 복도에서 마주쳐도 어색하지 않고, 라운지에서 다른 입주민들이랑 친해질 수도 있음.</div>
+        <div class="review-meta"><span class="review-author">refer***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">매봉역 1번 출구 바로 앞 수준이라 비 와도 우산 없이 등하교 가능. 강남 학원가 다니는 학생들한테 진짜 추천합니다. 위치 미쳤어요.</div>
+        <div class="review-meta"><span class="review-author">mb_stu***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진 학원가에서 가장 깨끗한 원룸텔이라고 자신 있게 말할 수 있어요. 매일 청소 들어가시고 분리수거도 체계적입니다. 합격 기원!</div>
+        <div class="review-meta"><span class="review-author">nya9***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">봉천역 인근에서 새로 생긴 곳 중에 단연 최고. 신축이라 곰팡이·벌레 걱정 없고, 환기도 잘 됩니다. 사장님 응대도 빠릅니다.</div>
+        <div class="review-meta"><span class="review-author">snu_n***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서초 직장이라 출퇴근 5분컷. 방 자체도 일반 원룸텔보다 넓고 채광 좋아서 답답한 느낌 없어요. 진짜 프리미엄 맞습니다.</div>
+        <div class="review-meta"><span class="review-author">seocho***</span><span class="review-branch">📍 방배역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실에서 자취 알아보면서 다른 곳 가본 적 있는데 여기랑 비교가 안 돼요. 인테리어 감각이 진짜 좋습니다. 사진보다 실물이 더 예뻐요.</div>
+        <div class="review-meta"><span class="review-author">comp2***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">홍대 일대에서 작업실 겸 자취방 찾던 디자이너인데 여기 완벽합니다. 책상 큼직하고 조명도 좋아서 집에서 작업하기 좋아요.</div>
+        <div class="review-meta"><span class="review-author">design***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+
+      <!-- 무한루프용 복제 -->
+      <a class="review-card" href="https://naver.me/xNp9Zqs3" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">양재 본사 출근하는 회사원입니다. 도보 5분 거리에 이런 신축 컨디션이라 거의 횡재 수준. 엘리베이터·도어락 다 새거고 복도도 호텔처럼 깔끔해요.</div>
+        <div class="review-meta"><span class="review-author">yj_off***</span><span class="review-branch">📍 양재강남점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">친구가 추천해줘서 들어왔는데 진짜 만족이에요. 여성전용이라 복도에서 마주쳐도 어색하지 않고, 라운지에서 다른 입주민들이랑 친해질 수도 있음.</div>
+        <div class="review-meta"><span class="review-author">refer***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5nhD47f9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">매봉역 1번 출구 바로 앞 수준이라 비 와도 우산 없이 등하교 가능. 강남 학원가 다니는 학생들한테 진짜 추천합니다. 위치 미쳤어요.</div>
+        <div class="review-meta"><span class="review-author">mb_stu***</span><span class="review-branch">📍 매봉역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GuCrwMW6" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">노량진 학원가에서 가장 깨끗한 원룸텔이라고 자신 있게 말할 수 있어요. 매일 청소 들어가시고 분리수거도 체계적입니다. 합격 기원!</div>
+        <div class="review-meta"><span class="review-author">nya9***</span><span class="review-branch">📍 노량진역점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/신림봉천원룸텔/place/2021063974" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">봉천역 인근에서 새로 생긴 곳 중에 단연 최고. 신축이라 곰팡이·벌레 걱정 없고, 환기도 잘 됩니다. 사장님 응대도 빠릅니다.</div>
+        <div class="review-meta"><span class="review-author">snu_n***</span><span class="review-branch">📍 서울대점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/search/방배역원룸텔/place/2086400963" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">서초 직장이라 출퇴근 5분컷. 방 자체도 일반 원룸텔보다 넓고 채광 좋아서 답답한 느낌 없어요. 진짜 프리미엄 맞습니다.</div>
+        <div class="review-meta"><span class="review-author">seocho***</span><span class="review-branch">📍 방배역점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/xF4Q1CaN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">잠실에서 자취 알아보면서 다른 곳 가본 적 있는데 여기랑 비교가 안 돼요. 인테리어 감각이 진짜 좋습니다. 사진보다 실물이 더 예뻐요.</div>
+        <div class="review-meta"><span class="review-author">comp2***</span><span class="review-branch">📍 잠실송파점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/GGGutjyi" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">홍대 일대에서 작업실 겸 자취방 찾던 디자이너인데 여기 완벽합니다. 책상 큼직하고 조명도 좋아서 집에서 작업하기 좋아요.</div>
+        <div class="review-meta"><span class="review-author">design***</span><span class="review-branch">📍 신촌 홍대점</span></div>
+      </a>
+    </div>
+
+    <div class="marquee r4">
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장 근처 직장이라 도보 출근. 1년 살았는데 한 번도 불편한 적 없었어요. 사장님이 입주민 챙기는 게 다른 곳이랑 차원이 다릅니다.</div>
+        <div class="review-meta"><span class="review-author">long1y***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌호수 야경이 너무 좋아서 산책 자주 다녀요. 8호선·9호선 더블 역세권이라 어디 가기도 편하고. 잠실 직장인분들한테 강추.</div>
+        <div class="review-meta"><span class="review-author">9line***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">강동·길동 일대에서 신축 원룸텔 찾고 있었는데 여기 보고 바로 계약. 방 안에 미니 화장실+샤워실이 따로 있는 게 진짜 만족스럽네요.</div>
+        <div class="review-meta"><span class="review-author">gdgd***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">광명에서 직장 다니는데 7호선·1호선 다 닿는 위치라 약속 잡기도 편하고 가산까지 출퇴근 진짜 빨라요. 가성비 최고 원룸텔.</div>
+        <div class="review-meta"><span class="review-author">7line***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대 졸업할 때까지 여기서 살 예정이에요. 학교 가깝고 시설 좋고 안전하고. 부모님도 직접 보시고 안심하셨습니다.</div>
+        <div class="review-meta"><span class="review-author">grad***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">사당역 환승하면 강남·여의도 30분 안. 직장인한테 진짜 최적의 위치. 시설도 깔끔하고 입주민 분위기도 차분합니다. 추천.</div>
+        <div class="review-meta"><span class="review-author">sd_w***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로 감성 호스텔! 인스타에 올릴 사진 천국이에요. 위치도 시내 한복판이라 어딜 가도 가깝습니다. 다음에 또 묵을게요.</div>
+        <div class="review-meta"><span class="review-author">insta***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">신촌 일대에서 여성전용·신축·역세권 세 가지 다 만족하는 곳은 여기뿐이에요. 진짜 잘 선택했다고 매일 생각합니다.</div>
+        <div class="review-meta"><span class="review-author">triple***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+
+      <!-- 무한루프용 복제 -->
+      <a class="review-card" href="https://naver.me/IFEwqrTz" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">가락시장 근처 직장이라 도보 출근. 1년 살았는데 한 번도 불편한 적 없었어요. 사장님이 입주민 챙기는 게 다른 곳이랑 차원이 다릅니다.</div>
+        <div class="review-meta"><span class="review-author">long1y***</span><span class="review-branch">📍 송파가락점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5T0XClcN" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">석촌호수 야경이 너무 좋아서 산책 자주 다녀요. 8호선·9호선 더블 역세권이라 어디 가기도 편하고. 잠실 직장인분들한테 강추.</div>
+        <div class="review-meta"><span class="review-author">9line***</span><span class="review-branch">📍 잠실석촌점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/G6RYtnxV" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">강동·길동 일대에서 신축 원룸텔 찾고 있었는데 여기 보고 바로 계약. 방 안에 미니 화장실+샤워실이 따로 있는 게 진짜 만족스럽네요.</div>
+        <div class="review-meta"><span class="review-author">gdgd***</span><span class="review-branch">📍 강동길동점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/FbOdRW62" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">광명에서 직장 다니는데 7호선·1호선 다 닿는 위치라 약속 잡기도 편하고 가산까지 출퇴근 진짜 빨라요. 가성비 최고 원룸텔.</div>
+        <div class="review-meta"><span class="review-author">7line***</span><span class="review-branch">📍 광명가산점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5sGWehQ9" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">성신여대 졸업할 때까지 여기서 살 예정이에요. 학교 가깝고 시설 좋고 안전하고. 부모님도 직접 보시고 안심하셨습니다.</div>
+        <div class="review-meta"><span class="review-author">grad***</span><span class="review-branch">📍 성신여대점</span></div>
+      </a>
+      <a class="review-card" href="https://naver.me/5YS6kUPW" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">사당역 환승하면 강남·여의도 30분 안. 직장인한테 진짜 최적의 위치. 시설도 깔끔하고 입주민 분위기도 차분합니다. 추천.</div>
+        <div class="review-meta"><span class="review-author">sd_w***</span><span class="review-branch">📍 사당점</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/2019835632" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">을지로 감성 호스텔! 인스타에 올릴 사진 천국이에요. 위치도 시내 한복판이라 어딜 가도 가깝습니다. 다음에 또 묵을게요.</div>
+        <div class="review-meta"><span class="review-author">insta***</span><span class="review-branch">📍 호스텔 렛츠팝</span></div>
+      </a>
+      <a class="review-card" href="https://map.naver.com/p/entry/place/1190963986" target="_blank" rel="noopener">
+        <div class="review-stars">★★★★★</div>
+        <div class="review-text">신촌 일대에서 여성전용·신축·역세권 세 가지 다 만족하는 곳은 여기뿐이에요. 진짜 잘 선택했다고 매일 생각합니다.</div>
+        <div class="review-meta"><span class="review-author">triple***</span><span class="review-branch">📍 신촌 스테이블리스</span></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="reviews-cta rv">
+    <a href="#branches">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.273 12.845 7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+      각 지점 네이버 플레이스에서 더 많은 후기 보기
+    </a>
   </div>
 </section>
 
